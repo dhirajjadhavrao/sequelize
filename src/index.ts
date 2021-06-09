@@ -12,13 +12,19 @@ export async function main(options: ApplicationConfig = {}) {
   console.log(`Server is running at ${url}`);
   console.log(`Try ${url}/ping`);
 
-  sequelize
-    .sync({force: true})
+  import('./models')
     .then(() => {
-      console.log('Database is connected..............!!');
+      sequelize
+        .sync({force: true})
+        .then(() => {
+          console.log('Database is connected..............!!');
+        })
+        .catch(err => {
+          console.log('Error while connecting DB...... ' + err);
+        });
     })
     .catch(err => {
-      console.log('Error while connecting DB...... ' + err);
+      console.log('unable to fetch models');
     });
 
   return app;
