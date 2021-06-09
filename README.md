@@ -43,3 +43,24 @@ Install sequelize and mysql
 npm install --save sequelize
 
 npm install --save mysql2
+
+Create connection object using Sequelize
+
+import {Sequelize} from 'sequelize';
+
+export const sequelize = new Sequelize('DATABASE_NAME', 'DATABASE_USER', 'DATABASE_PASSORD', {
+dialect: 'mysql', //DB system you are using eg postgres
+host: 'localhost', //Your host address
+});
+
+after this import object into your app.ts / index.ts your main application file
+and call sync() of sequelize class
+sequelize.sync() will fetch all your configuration and try to connect with Database
+after the successfull connection with the database it fire query SELECT 1+1 AS result
+to ensure your database connection
+
+onces connection is established then it will create all the tables with respect to
+the models you defined using same sequelize object
+
+you can eigther import models usiing requre('model/path') or import('model/path')
+before calling sync().
