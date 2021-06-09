@@ -160,3 +160,11 @@ Once you use `npm start` command this will automatically creates tables into dat
 1. It will check if table is exists and if you use {force:true} then will drop the table
 2. create new table with specified name and column
 3. get index for the table by executing SHOW INDEX FROM `table_name`
+
+Now if you check workbench new table is created with name user into specified database
+
+## Conclusion :
+
+Sequelize is promise based mature feature rich ORM, Official documentation for
+sequelize is very difficult but you can easily find any github example and blog
+or any issue raised. Sequelize is a widely accepted ORM and very easy to use.
