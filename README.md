@@ -72,7 +72,7 @@ export const sequelize = new Sequelize(
 
 After successful object creation import object into your app.ts or index.ts main application file and call sync() of sequelize class.
 
-sequelize.sync() will fetch all your configuration and try to connect with Database, after the successfull connection with the database it fire query SELECT 1+1 AS result to ensure your database connection.
+sequelize.sync() will fetch all your configuration and try to connect with Database, after the successfull connection with the database it fire query `SELECT 1+1 AS result` to ensure your database connection.
 
 ```typescript
 sequelize
