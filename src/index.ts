@@ -1,4 +1,5 @@
 import {ApplicationConfig, SequelizeApplication} from './application';
+import {sequelize} from './datasources/mysql-connector';
 
 export * from './application';
 
@@ -10,6 +11,15 @@ export async function main(options: ApplicationConfig = {}) {
   const url = app.restServer.url;
   console.log(`Server is running at ${url}`);
   console.log(`Try ${url}/ping`);
+
+  sequelize
+    .sync({force: true})
+    .then(() => {
+      console.log('Database is connected..............!!');
+    })
+    .catch(err => {
+      console.log('Error while connecting DB...... ' + err);
+    });
 
   return app;
 }
