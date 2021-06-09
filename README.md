@@ -64,3 +64,68 @@ the models you defined using same sequelize object
 
 you can eigther import models usiing requre('model/path') or import('model/path')
 before calling sync().
+
+To create Models and table structure
+
+1. Import your sequelize object
+2. Use sequelize.define()
+   method takes ModelName, Options<ModelAttributes>, Options<TablesAttributes> arguments
+
+Model Structure
+
+import {DataTypes} from 'sequelize';
+import {sequelize} from '../datasources/mysql-connector';
+
+export const User = sequelize.define(
+'User',
+{
+id: {
+type: DataTypes.INTEGER,
+autoIncrement: true,
+primaryKey: true,
+},
+name: {
+type: DataTypes.STRING,
+allowNull: false,
+},
+email: {
+type: DataTypes.STRING,
+allowNull: false,
+},
+phoneNumber: {
+type: DataTypes.STRING,
+allowNull: false,
+},
+city: {
+type: DataTypes.STRING,
+allowNull: false,
+},
+},
+{
+tableName: 'user',
+timestamps: true,
+},
+);
+
+Add/import this column into your index.ts before you call syn()
+
+import('./models')
+.then(() => {
+sequelize
+.sync({force: true})
+.then(() => {
+console.log('Database is connected..............!!');
+})
+.catch(err => {
+console.log('Error while connecting DB...... ' + err);
+});
+})
+.catch(err => {
+console.log('unable to fetch models');
+});
+
+Once you use npm start command this will automatically creates tables into database
+
+1. It will check if table is exists and if you use {force:true} then will drop the table
+2. create new table with specified name and column
+3. get index for the table by executing SHOW INDEX FROM `table_name`
