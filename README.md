@@ -56,13 +56,18 @@ npm install --save mysql2
 
 ## Create connection object using Sequelize
 
-```
+```typescript
 import {Sequelize} from 'sequelize';
 
-export const sequelize = new Sequelize('DATABASE_NAME', 'DATABASE_USER', 'DATABASE_PASSORD', {
-dialect: 'mysql', //DB system you are using eg postgres
-host: 'localhost', //Your host address
-});
+export const sequelize = new Sequelize(
+  'DATABASE_NAME',
+  'DATABASE_USER',
+  'DATABASE_PASSORD',
+  {
+    dialect: 'mysql', //DB system you are using eg postgres
+    host: 'localhost', //Your host address
+  },
+);
 ```
 
 After successful object creation import object into your app.ts or index.ts main application file and call sync() of sequelize class.
